@@ -20,7 +20,7 @@ $eingeloggt = $_SESSION['eingeloggt'] ?? false;
     <?php if ($eingeloggt): ?>
         <p>Du bist eingeloggt als: <strong><?php echo htmlspecialchars($benutzername); ?></strong></p>
         <p>
-            (In diesem Beispiel gibt es keinen Logout.)
+            <a href="logout.php">Logout</a>
         </p>
     <?php else: ?>
         <form method="post" action="backend_login.php">

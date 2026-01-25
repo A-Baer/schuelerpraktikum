@@ -10,4 +10,3 @@
 
 // Optional:
 // - Prüfe mit is_numeric(), ob alter eine Zahl ist.
-// - Baue einen Link zurück zum Formular.

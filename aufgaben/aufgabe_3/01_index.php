@@ -7,8 +7,6 @@
 // 2) Felder:
 //    - name (Textfeld)
 //    - alter (Zahlenfeld)
-// 3) Zeige die zuletzt eingegebenen Werte wieder im Formular an.
-//    Tipp: Nutze $_POST und htmlspecialchars() für die value-Ausgabe.
 
 // Hinweis:
 // - POST-Parameter sind nicht in der URL sichtbar.

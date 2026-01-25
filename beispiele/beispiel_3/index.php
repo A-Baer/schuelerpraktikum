@@ -1,11 +1,3 @@
-<?php
-// Beispiel 3: POST-Parameter mit einem einfachen Formular
-
-// Standardwerte, falls keine POST-Parameter gesetzt sind
-$name = $_POST['name'] ?? '';
-$alter = $_POST['alter'] ?? '';
-?>
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -18,12 +10,12 @@ $alter = $_POST['alter'] ?? '';
     <form method="post" action="backend.php">
         <label>
             Name:
-            <input type="text" name="name" value="<?php echo htmlspecialchars($name); ?>">
+            <input type="text" name="name">
         </label>
         <br>
         <label>
             Alter:
-            <input type="number" name="alter" min="0" value="<?php echo htmlspecialchars($alter); ?>">
+            <input type="number" name="alter" min="0">
         </label>
         <br>
         <button type="submit">Absenden</button>

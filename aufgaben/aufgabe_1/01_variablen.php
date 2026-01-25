@@ -9,7 +9,7 @@
 // - $durchschnitt (Float)
 
 // TODO: Gib alle Werte mit echo aus.
-// Hinweis: \n erzeugt einen Zeilenumbruch.
+// Hinweis: <br> erzeugt einen Zeilenumbruch.
 
 // Beispielausgabe (nur als Orientierung):
 // Name: Lea

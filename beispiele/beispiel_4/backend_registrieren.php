@@ -11,8 +11,6 @@ $fehler = [];
 // Einfache Validierung
 if ($benutzername === '') {
     $fehler[] = 'Benutzername fehlt.';
-} elseif (!preg_match('/^[A-Za-z0-9_]+$/', $benutzername)) {
-    $fehler[] = 'Benutzername darf nur Buchstaben, Zahlen und _ enthalten.';
 }
 
 if ($passwort === '') {

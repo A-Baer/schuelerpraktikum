@@ -1,5 +1,5 @@
 <?php
-// Beispiel 4: Logout (Session beenden)
+// Beispiel 5: Logout (Session beenden)
 
 session_start();
 

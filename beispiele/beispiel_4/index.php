@@ -1,46 +1,35 @@
 <?php
-// Beispiel 4: Login-Formular mit Session
-
+// Beispiel 4: SESSION-Variablen im Formular verwenden
 session_start();
 
-// Optional: Werte wieder anzeigen, falls der Nutzer zurückkommt
-$benutzername = $_POST['benutzername'] ?? ($_SESSION['benutzername'] ?? '');
-$eingeloggt = $_SESSION['eingeloggt'] ?? false;
+$name = $_SESSION['name'] ?? '';
+$alter = $_SESSION['alter'] ?? '';
 ?>
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>SESSION-Variablen Beispiel</title>
 </head>
 <body>
-    <h1>Login</h1>
+    <h1>SESSION-Variablen Beispiel</h1>
 
-    <?php if ($eingeloggt): ?>
-        <p>Du bist eingeloggt als: <strong><?php echo htmlspecialchars($benutzername); ?></strong></p>
-        <p>
-            <a href="logout.php">Logout</a>
-        </p>
-    <?php else: ?>
-        <form method="post" action="backend_login.php">
-            <label>
-                Benutzername:
-                <input type="text" name="benutzername" value="<?php echo htmlspecialchars($benutzername); ?>">
-            </label>
-            <br>
-            <label>
-                Passwort:
-                <input type="password" name="passwort">
-            </label>
-            <br>
-            <button type="submit">Einloggen</button>
-        </form>
+    <form method="post" action="backend.php">
+        <label>
+            Name:
+            <input type="text" name="name" value="<?php echo htmlspecialchars($name); ?>">
+        </label>
+        <br>
+        <label>
+            Alter:
+            <input type="number" name="alter" min="0" value="<?php echo htmlspecialchars($alter); ?>">
+        </label>
+        <br>
+        <button type="submit">Absenden</button>
+    </form>
 
-        <p>
-            Noch keinen Account?
-            <a href="registrieren.php">Jetzt registrieren</a>
-        </p>
-    <?php endif; ?>
+    <p>
+        Hinweis: Die Werte werden in der SESSION gespeichert und beim nächsten Besuch vorausgefüllt.
+    </p>
 </body>
 </html>

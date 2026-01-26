@@ -1,5 +1,5 @@
 <?php
-// Beispiel 4: Registrierungsformular mit Session
+// Beispiel 5: Registrierungsformular mit Session
 
 session_start();
 

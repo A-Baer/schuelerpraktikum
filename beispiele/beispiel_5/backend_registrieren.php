@@ -1,5 +1,5 @@
 <?php
-// Beispiel 4: Login verarbeiten (mit Session)
+// Beispiel 5: Registrierung verarbeiten (mit Session)
 
 session_start();
 
@@ -8,6 +8,7 @@ $passwort = $_POST['passwort'] ?? '';
 
 $fehler = [];
 
+// Einfache Validierung
 if ($benutzername === '') {
     $fehler[] = 'Benutzername fehlt.';
 }
@@ -22,20 +23,19 @@ if (!is_dir($accountsOrdner)) {
 }
 
 $accountDatei = $accountsOrdner . '/' . $benutzername;
-if (count($fehler) === 0 && !file_exists($accountDatei)) {
-    $fehler[] = 'Benutzername oder Passwort ist falsch.';
+if (count($fehler) === 0 && file_exists($accountDatei)) {
+    $fehler[] = 'Benutzername ist bereits vergeben.';
 }
 
 if (count($fehler) === 0) {
-    $gespeicherterHash = file_get_contents($accountDatei);
-    if ($gespeicherterHash === false || !password_verify($passwort, $gespeicherterHash)) {
-        $fehler[] = 'Benutzername oder Passwort ist falsch.';
+    // Passwort sicher hashen und speichern
+    $hash = password_hash($passwort, PASSWORD_DEFAULT);
+    $ergebnis = file_put_contents($accountDatei, $hash);
+    if ($ergebnis === false) {
+        $fehler[] = 'Account konnte nicht gespeichert werden.';
+    } else {
+        $_SESSION['zuletzt_registriert'] = $benutzername;
     }
-}
-
-if (count($fehler) === 0) {
-    $_SESSION['eingeloggt'] = true;
-    $_SESSION['benutzername'] = $benutzername;
 }
 ?>
 
@@ -43,25 +43,25 @@ if (count($fehler) === 0) {
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Registrierung</title>
 </head>
 <body>
-    <h1>Login</h1>
+    <h1>Registrierung</h1>
 
     <?php if (count($fehler) > 0): ?>
-        <p>Login fehlgeschlagen:</p>
+        <p>Es gab ein Problem:</p>
         <ul>
             <?php foreach ($fehler as $meldung): ?>
                 <li><?php echo htmlspecialchars($meldung); ?></li>
             <?php endforeach; ?>
         </ul>
         <p>
-            <a href="index.php">Zurück zum Login</a>
+            <a href="registrieren.php">Zurück zur Registrierung</a>
         </p>
     <?php else: ?>
-        <p>Willkommen, <strong><?php echo htmlspecialchars($benutzername); ?></strong>!</p>
+        <p>Account erstellt für: <strong><?php echo htmlspecialchars($benutzername); ?></strong></p>
         <p>
-            <a href="index.php">Zurück zum Login</a>
+            <a href="index.php">Zum Login</a>
         </p>
     <?php endif; ?>
 </body>

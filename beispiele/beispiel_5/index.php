@@ -1,21 +1,21 @@
 <?php
-// Beispiel 5: Login-Formular mit Session
+// Beispiel 5: Login + Registrierung auf einer Seite
 
 session_start();
 
-// Optional: Werte wieder anzeigen, falls der Nutzer zurückkommt
-$benutzername = $_POST['benutzername'] ?? ($_SESSION['benutzername'] ?? '');
 $eingeloggt = $_SESSION['eingeloggt'] ?? false;
+$benutzername = $_SESSION['benutzername'] ?? '';
+$zuletztRegistriert = $_SESSION['zuletzt_registriert'] ?? '';
 ?>
 
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Login & Registrierung</title>
 </head>
 <body>
-    <h1>Login</h1>
+    <h1>Login & Registrierung</h1>
 
     <?php if ($eingeloggt): ?>
         <p>Du bist eingeloggt als: <strong><?php echo htmlspecialchars($benutzername); ?></strong></p>
@@ -23,10 +23,11 @@ $eingeloggt = $_SESSION['eingeloggt'] ?? false;
             <a href="logout.php">Logout</a>
         </p>
     <?php else: ?>
+        <h2>Login</h2>
         <form method="post" action="backend_login.php">
             <label>
                 Benutzername:
-                <input type="text" name="benutzername" value="<?php echo htmlspecialchars($benutzername); ?>">
+                <input type="text" name="benutzername" value="<?php echo htmlspecialchars($zuletztRegistriert); ?>">
             </label>
             <br>
             <label>
@@ -37,10 +38,20 @@ $eingeloggt = $_SESSION['eingeloggt'] ?? false;
             <button type="submit">Einloggen</button>
         </form>
 
-        <p>
-            Noch keinen Account?
-            <a href="registrieren.php">Jetzt registrieren</a>
-        </p>
+        <h2>Registrieren</h2>
+        <form method="post" action="backend_registrieren.php">
+            <label>
+                Benutzername:
+                <input type="text" name="benutzername" value="<?php echo htmlspecialchars($zuletztRegistriert); ?>">
+            </label>
+            <br>
+            <label>
+                Passwort:
+                <input type="password" name="passwort">
+            </label>
+            <br>
+            <button type="submit">Account erstellen</button>
+        </form>
     <?php endif; ?>
 </body>
 </html>

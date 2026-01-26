@@ -56,7 +56,7 @@ if (count($fehler) === 0) {
             <?php endforeach; ?>
         </ul>
         <p>
-            <a href="registrieren.php">Zurück zur Registrierung</a>
+            <a href="index.php">Zurück zur Registrierung</a>
         </p>
     <?php else: ?>
         <p>Account erstellt für: <strong><?php echo htmlspecialchars($benutzername); ?></strong></p>
